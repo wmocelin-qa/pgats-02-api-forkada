@@ -1,7 +1,5 @@
 const request = require('supertest');
- const { expect } = require('chai');
- const sinon = require('sinon'); 
- const app = require('../../app'); 
+const { expect } = require('chai'); 
 
  describe('Graphql API - Transfer Mutation - External', () => {
      let token;
@@ -51,6 +49,10 @@ const request = require('supertest');
             })
 
         expect(resposta.status).to.equal(200)
+        const respostaEsperada = require('../fixture/respostas/quandoInformoValoresValidosNoMutationReceboStatusCode200.json')
+        delete resposta.body.date;
+        delete respostaEsperada.date; 
+        expect(resposta.body).to.deep.equal(respostaEsperada);
      });
 
      it('Transferência de valores superiores ao saldo, logo tenho mensagem de Saldo Insuficiente.', async () => {
