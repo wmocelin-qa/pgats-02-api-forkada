@@ -50,8 +50,6 @@ const { expect } = require('chai');
 
         expect(resposta.status).to.equal(200)
         const respostaEsperada = require('../fixture/respostas/quandoInformoValoresValidosNoMutationReceboStatusCode200.json')
-        delete resposta.body.date;
-        delete respostaEsperada.date; 
         expect(resposta.body).to.deep.equal(respostaEsperada);
      });
 
